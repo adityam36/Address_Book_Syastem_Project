@@ -1,6 +1,7 @@
 package com.AddressBook;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class AddressBook
 {
@@ -9,5 +10,34 @@ public class AddressBook
     {
         contactList.add(d);
         return contactList;
+    }
+    public void editContact(String firstName, String lastName)
+    {
+        boolean isContactFound = false;
+        for (Contact contact : contactList) {
+            if (contact.getFirstName().equalsIgnoreCase(firstName) && contact.getLastName().equalsIgnoreCase(lastName))
+            {
+                isContactFound = true;
+                System.out.println("Contact found! Enter new details:");
+                Scanner sc = AddressBookMain.sc; // Use the existing scanner
+                System.out.println("Enter the new address:");
+                contact.setAddress(sc.next());
+                System.out.println("Enter the new city:");
+                contact.setCity(sc.next());
+                System.out.println("Enter the new state:");
+                contact.setState(sc.next());
+                System.out.println("Enter the new zip code:");
+                contact.setZip(sc.next());
+                System.out.println("Enter the new phone number:");
+                contact.setPhoneNumber(sc.next());
+                System.out.println("Enter the new email:");
+                contact.setEmail(sc.next());
+                System.out.println("Contact updated successfully!");
+                break;
+            }
+        }
+        if (!isContactFound) {
+            System.out.println("No contact found with the given name.");
+        }
     }
 }
