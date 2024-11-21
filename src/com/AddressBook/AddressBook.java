@@ -3,20 +3,18 @@ package com.AddressBook;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class AddressBook
-{
+public class AddressBook {
     public ArrayList<Contact> contactList = new ArrayList<>();
-    public  ArrayList<Contact> contactList(Contact d)
-    {
+
+    public ArrayList<Contact> contactList(Contact d) {
         contactList.add(d);
         return contactList;
     }
-    public void editContact(String firstName, String lastName)
-    {
+
+    public void editContact(String firstName, String lastName) {
         boolean isContactFound = false;
         for (Contact contact : contactList) {
-            if (contact.getFirstName().equalsIgnoreCase(firstName) && contact.getLastName().equalsIgnoreCase(lastName))
-            {
+            if (contact.getFirstName().equalsIgnoreCase(firstName) && contact.getLastName().equalsIgnoreCase(lastName)) {
                 isContactFound = true;
                 System.out.println("Contact found! Enter new details:");
                 Scanner sc = AddressBookMain.sc; // Use the existing scanner
@@ -39,5 +37,21 @@ public class AddressBook
         if (!isContactFound) {
             System.out.println("No contact found with the given name.");
         }
+    }
+
+    public void deleteContact(String firstName, String lastName) {
+        boolean isContactDeleted = false;
+        for (Contact contact : contactList) {
+            if (contact.getFirstName().equalsIgnoreCase(firstName) && contact.getLastName().equalsIgnoreCase(lastName)) {
+                contactList.remove(contact);
+                isContactDeleted = true;
+                System.out.println("Contact deleted successfully!");
+                break;
+            }
+        }
+        if (!isContactDeleted) {
+            System.out.println("No contact found with the given name.");
+        }
+
     }
 }
